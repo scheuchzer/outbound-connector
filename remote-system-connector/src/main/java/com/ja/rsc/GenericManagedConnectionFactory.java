@@ -1,5 +1,5 @@
 /*
-Copyright 2014 Thomas Scheuchzer, java-adventures.com
+Copyright 2013 Thomas Scheuchzer, java-adventures.com
 Based on class org.connectorz.files.store.GenericManagedConnectionFactory by Adam Bien
 - Properties url, username and password added.
 - @ConnectionDefinition removed
