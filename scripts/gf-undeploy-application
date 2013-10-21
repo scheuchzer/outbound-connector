@@ -1,0 +1,4 @@
+#!/bin/bash
+appName=$1
+echo "Undeploying application: ${appName}"
+"$GLASSFISH_HOME"/bin/asadmin undeploy "$appName"

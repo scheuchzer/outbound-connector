@@ -1,0 +1,22 @@
+#!/bin/bash
+[[ -z "$JBOSS_HOME" ]] && echo "JBOSS_HOME not defined" && exit 1
+
+resourceName=$1
+archive=$2
+dataSourceClass=$3
+
+localName="jca/${resourceName}"
+jndiName="java:jboss/${localName}"
+
+poolName=${resourceName}Pool
+cmd="$JBOSS_HOME/bin/jboss-cli.sh -c"
+
+shift 3
+params=("$@")
+
+$cmd "/subsystem=resource-adapters/resource-adapter=${archive}/connection-definitions=${poolName}:add(jndi-name=${jndiName}, class-name=${dataSourceClass})"
+for param in ${params[*]}; do
+	key=$(echo "${param}" | sed s/=.*//)
+	value=$(echo "${param}" | sed s/.*=//)
+	$cmd "/subsystem=resource-adapters/resource-adapter=${archive}/connection-definitions=${poolName}/config-properties=${key}:add(value=\"${value}\")"
+done

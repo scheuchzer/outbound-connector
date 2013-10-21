@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>remote-system-connector-parent</artifactId>
+		<groupId>com.java-adventures.rsc</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>remote-system-connector-api</artifactId>
+	<name>Remote System Connector - API</name>
+	<url>http://java-adventures.com</url>
+	<build>
+		<plugins>
+		</plugins>
+	</build>
+	<description>A  simple interface for your resource adapter providing access to a connection. Your resource adapter api should extend the Connection and ConnectionFactory interface. The connection interface exposes the api of your remote system.</description>
+</project>

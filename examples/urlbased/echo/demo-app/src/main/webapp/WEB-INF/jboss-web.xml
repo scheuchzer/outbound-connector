@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<resource-ref>
+		<res-ref-name>jca/echo</res-ref-name>
+		<jndi-name>java:jboss/jca/echo</jndi-name>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>jca/echo2</res-ref-name>
+		<jndi-name>java:jboss/jca/echo2</jndi-name>
+	</resource-ref>
+</jboss-web>  

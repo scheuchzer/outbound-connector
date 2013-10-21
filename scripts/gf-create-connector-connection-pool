@@ -1,0 +1,18 @@
+#!/bin/bash
+resourceName=$1
+raname=$2
+dataSourceClass=$3
+poolName=${resourceName}Pool
+
+cmd=$GLASSFISH_HOME/bin/asadmin
+
+shift 3
+params=("$@")
+
+${cmd} create-connector-connection-pool --raname ${raname} --connectiondefinition ${dataSourceClass} ${poolName}
+
+for param in ${params[*]}; do
+	key=$(echo "${param}" | sed s/=.*//)
+	value=$(echo "${param}" | sed s/.*=//)
+	${cmd} set domain.resources.connector-connection-pool.${poolName}.property.${key}=${value}
+done

@@ -1,0 +1,6 @@
+#!/bin/bash
+FQN=$(readlink -f $0)
+DIRNAME=$(dirname ${FQN})
+
+name=$1
+asadmin delete-connector-resource "jca/${name}"

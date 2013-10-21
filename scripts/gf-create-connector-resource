@@ -1,0 +1,8 @@
+#!/bin/bash
+
+resourceName=$1
+jndiName="jca/${resourceName}"
+poolName=${resourceName}Pool
+
+cmd=asadmin
+${cmd} create-connector-resource --poolname ${poolName} ${jndiName}

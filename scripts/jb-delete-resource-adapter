@@ -1,0 +1,8 @@
+#!/bin/bash
+[[ -z "$JBOSS_HOME" ]] && echo "JBOSS_HOME not defined" && exit 1
+FQN=$(readlink -f $0)
+DIRNAME=$(dirname ${FQN})
+
+archive=$1
+cmd="$JBOSS_HOME/bin/jboss-cli.sh -c"
+$cmd "/subsystem=resource-adapters/resource-adapter=${archive}:remove"

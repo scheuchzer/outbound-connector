@@ -1,0 +1,4 @@
+#!/bin/bash
+[[ -z "$JBOSS_HOME" ]] && echo "JBOSS_HOME not defined" && exit 1
+cmd="$JBOSS_HOME/bin/jboss-cli.sh -c"
+$cmd reload

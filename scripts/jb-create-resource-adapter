@@ -1,0 +1,16 @@
+#!/bin/bash
+[[ -z "$JBOSS_HOME" ]] && echo "JBOSS_HOME not defined" && exit 1
+
+archive=$1
+localName="jca/${resourceName}"
+jndiName="java:jboss/${localName}"
+poolName=${resourceName}Pool
+
+cmd="$JBOSS_HOME/bin/jboss-cli.sh -c"
+
+$cmd "/subsystem=resource-adapters/resource-adapter=${archive}:read-resource > /dev/null"
+if [[ "$?" == "1" ]]; then
+	$cmd "/subsystem=resource-adapters/resource-adapter=${archive}:add(archive=${archive}, transaction-support=NoTransaction)"
+fi
+
+

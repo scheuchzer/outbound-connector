@@ -1,0 +1,8 @@
+#!/bin/bash
+[[ -z "$JBOSS_HOME" ]] && echo "JBOSS_HOME not defined" && exit 1
+FQN=$(readlink -f $0)
+DIRNAME=$(dirname ${FQN})
+
+archive=$1
+cp "${archive}" "$JBOSS_HOME/standalone/deployments/"
+

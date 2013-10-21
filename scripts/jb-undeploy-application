@@ -1,0 +1,7 @@
+#!/bin/bash
+[[ -z "$JBOSS_HOME" ]] && echo "JBOSS_HOME not defined" && exit 1
+archive=$1
+file=$JBOSS_HOME/standalone/deployments/${archive}
+if [[ -f "$file" ]]; then
+	rm "$file"
+fi
