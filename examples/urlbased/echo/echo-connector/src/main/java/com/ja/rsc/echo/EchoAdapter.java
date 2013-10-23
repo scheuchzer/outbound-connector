@@ -20,7 +20,7 @@ import javax.resource.spi.TransactionSupport;
 
 import com.ja.rsc.AbstractAdapter;
 
-@Connector(reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction)
+@Connector(reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
 public class EchoAdapter extends AbstractAdapter {
 
 }
