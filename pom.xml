@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.java-adventures.rsc</groupId>
 	<artifactId>remote-system-connector-parent</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<url>http://java-adventures.com</url>
 	<description>A base implementation of a JEE Connector that provides Url, Username and Password properties. With this base implementation you should be able to create simple url based resource adapters without much coding overhead.</description>
@@ -117,6 +118,5 @@
 		<url>https://github.com/scheuchzer/outbound-connector</url>
 		<connection>scm:git:git://github.com/scheuchzer/outbound-connector.git</connection>
 		<developerConnection>scm:git:git://github.com/scheuchzer/outbound-connector.git</developerConnection>
-	  <tag>remote-system-connector-parent-0.0.1</tag>
-  </scm>
+	</scm>
 </project>
