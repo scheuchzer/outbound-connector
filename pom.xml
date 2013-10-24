@@ -105,4 +105,8 @@
 		<module>examples/urlbased/echo</module>
 		<module>examples/urlbased/extended-echo</module>
 	</modules>
+	<scm>
+		<url>https://github.com/scheuchzer/outbound-connector</url>
+		<developerConnection>scm:git:ssh://github.com:scheuchzer/outbound-connector.git</developerConnection>
+	</scm>
 </project>
