@@ -15,6 +15,9 @@ limitations under the License.
  */
 package com.ja.rsc;
 
+import static com.ja.junit.rule.glassfish.ConfigObject.connectorConnectionPool;
+import static com.ja.junit.rule.glassfish.ConfigObject.connectorResource;
+import static com.ja.junit.rule.glassfish.ConfigObject.deployment;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
@@ -33,6 +36,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ja.junit.rule.glassfish.GlassfishController;
+import com.ja.junit.rule.glassfish.GlassfishPreStartConfigurator;
 import com.ja.rsc.dummyra.DummyAdapter;
 import com.ja.rsc.dummyra.DummyConnection;
 import com.ja.rsc.dummyra.DummyConnectionFactory;
@@ -41,17 +46,18 @@ import com.ja.rsc.dummyra.TimeDummyConnection;
 public class ResourceAdapterIT {
 	private Logger log = LoggerFactory.getLogger(ResourceAdapterIT.class);
 	@Rule
-	public GlassfishController gf = new GlassfishController();
+	public GlassfishController gf = new GlassfishController(
+			new GlassfishPreStartConfigurator());
 
 	@Test
 	public void testResourceAdapterDeployment() throws Exception {
-		gf.deploy(createRarArchive("dummy.rar"));
+		gf.create(deployment(createRarArchive("dummy.rar")));
 
 		Properties properties = new Properties();
-		properties.setProperty("Format", "yyyy");
-		gf.createConnectorConnectionPool("dummy", DummyConnectionFactory.class,
-				"dummyPool", properties);
-		gf.createConnectorResource("dummyPool", "jca/dummy");
+		properties.setProperty("Format", "yyyy-MM");
+		gf.create(connectorConnectionPool("dummy",
+				DummyConnectionFactory.class, "dummyPool", properties));
+		gf.create(connectorResource("dummyPool", "jca/dummy"));
 
 		DummyConnectionFactory factory = gf.lookup("jca/dummy");
 		assertThat(factory, is(notNullValue()));
@@ -62,7 +68,7 @@ public class ResourceAdapterIT {
 			String time = connection.getTime();
 			log.info("Time={}", time);
 			assertThat(time,
-					is(new SimpleDateFormat("yyyy").format(new Date())));
+					is(new SimpleDateFormat("yyyy-MM").format(new Date())));
 		}
 
 	}
@@ -70,13 +76,13 @@ public class ResourceAdapterIT {
 	@Test
 	public void testResourceAdapterDeploymentWithNoFormatProperty()
 			throws Exception {
-		gf.deploy(createRarArchive("someDummy.rar"));
+		gf.create(deployment(createRarArchive("someDummy.rar")));
 
 		Properties properties = new Properties();
 		properties.setProperty("Format", "yyyy");
-		gf.createConnectorConnectionPool("someDummy",
-				DummyConnectionFactory.class, "someDummyPool", properties);
-		gf.createConnectorResource("someDummyPool", "jca/someDummy");
+		gf.create(connectorConnectionPool("someDummy",
+				DummyConnectionFactory.class, "someDummyPool", properties));
+		gf.create(connectorResource("someDummyPool", "jca/someDummy"));
 
 		DummyConnectionFactory factory = gf.lookup("jca/someDummy");
 		assertThat(factory, is(notNullValue()));

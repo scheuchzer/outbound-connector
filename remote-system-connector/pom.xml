@@ -30,6 +30,11 @@
 			<scope>test</scope>
 			<type>pom</type>
 		</dependency>
+		<dependency>
+			<groupId>com.java-adventures.junit</groupId>
+			<artifactId>glassfish-junit-rule</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
