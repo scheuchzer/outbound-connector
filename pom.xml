@@ -2,12 +2,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 	<groupId>com.java-adventures.rsc</groupId>
 	<artifactId>remote-system-connector-parent</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>JCA Remote System Connector</name>
 	<url>http://java-adventures.com</url>
-	<description>A base implementation of a JEE Connector that provides Url, Username and Password properties. With this base implementation you should be able to create simple url based resource adapters without much coding overhead.</description>
+	<description>A base implementation of a JEE Connector that provides Url, Username and Password properties. With this base implementation you should be able to create simple url based resource adapters without coding much overhead.</description>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>scheuchzer</id>
+			<name>Thomas Scheuchzer</name>
+			<email>thomas.scheuchzer@gmail.com</email>
+			<url>http://www.java-adventures.com</url>
+		</developer>
+	</developers>
 	<properties>
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,29 +56,43 @@
 				<artifactId>glassfish-junit-rule</artifactId>
 				<version>0.2.0</version>
 			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.main.extras</groupId>
+				<artifactId>glassfish-embedded-all</artifactId>
+				<version>3.1.2.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.9.5</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.main.extras</groupId>
 			<artifactId>glassfish-embedded-all</artifactId>
-			<version>3.1.2.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<name>JCA Remote System Connector</name>
 	<build>
 		<pluginManagement>
 			<plugins>

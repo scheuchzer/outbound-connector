@@ -23,6 +23,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -78,10 +79,8 @@ public class ResourceAdapterIT {
 			throws Exception {
 		gf.create(deployment(createRarArchive("someDummy.rar")));
 
-		Properties properties = new Properties();
-		properties.setProperty("Format", "yyyy");
 		gf.create(connectorConnectionPool("someDummy",
-				DummyConnectionFactory.class, "someDummyPool", properties));
+				DummyConnectionFactory.class, "someDummyPool", new Properties()));
 		gf.create(connectorResource("someDummyPool", "jca/someDummy"));
 
 		DummyConnectionFactory factory = gf.lookup("jca/someDummy");
@@ -90,10 +89,15 @@ public class ResourceAdapterIT {
 		try (DummyConnection connection = factory.getConnection()) {
 			assertThat(connection, is(notNullValue()));
 			assertEquals(TimeDummyConnection.class, connection.getClass());
-			String time = connection.getTime();
-			log.info("Time={}", time);
-			assertThat(time,
-					is(new SimpleDateFormat("yyyy").format(new Date())));
+			/*
+			 * well, this test is time critical and may fail if the following
+			 * two code lines are executed between a second change
+			 */
+			String actualTime = connection.getTime();
+			String expectedTime = new SimpleDateFormat(
+					"EEE MMM dd HH:mm:ss zzz yyyy").format(new Date());
+			log.info("Time={}", actualTime);
+			assertThat(actualTime, is(expectedTime));
 		}
 
 	}
