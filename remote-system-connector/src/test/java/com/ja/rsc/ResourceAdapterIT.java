@@ -26,6 +26,7 @@ import static org.junit.Assert.assertThat;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
 
@@ -95,7 +96,7 @@ public class ResourceAdapterIT {
 			 */
 			String actualTime = connection.getTime();
 			String expectedTime = new SimpleDateFormat(
-					"EEE MMM dd HH:mm:ss zzz yyyy").format(new Date());
+					"EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH).format(new Date());
 			log.info("Time={}", actualTime);
 			assertThat(actualTime, is(expectedTime));
 		}
