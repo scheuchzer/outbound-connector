@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/scheuchzer/outbound-connector.svg?branch=master)](https://travis-ci.org/scheuchzer/outbound-connector)
+
 #outbound-connector
 
 A base implementation of an outbound-connector that uses the connection properties url, username and password.
